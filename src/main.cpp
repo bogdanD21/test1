@@ -11,6 +11,7 @@ int sumVector(const vector<int>& v) {
         sum = v[i];
     }
     return sum;
+return
 }
 
 // Функция выводит приветствие
