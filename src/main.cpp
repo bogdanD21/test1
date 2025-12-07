@@ -20,7 +20,7 @@ void greet(const string& name) {
 }
 
 int main() {
-    vector<int> numbers = {1, 2, 3, 4, 5};
+    vector<int> numbers = {1, 2, 3, 4};
     cout << "Sum of numbers: " << sumVector(numbers) << endl;
 
     string username;
