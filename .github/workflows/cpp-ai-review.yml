@@ -35,10 +35,14 @@ jobs:
           from transformers import AutoModelForCausalLM, AutoTokenizer
           import requests
 
-          # Модель
-          model_name = "facebook/opt-350m"
+          # Модель CodeGen
+          model_name = "Salesforce/codegen-350M-mono"
           tokenizer = AutoTokenizer.from_pretrained(model_name)
           model = AutoModelForCausalLM.from_pretrained(model_name)
+
+          # Обеспечиваем pad_token
+          if tokenizer.pad_token is None:
+              tokenizer.pad_token = tokenizer.eos_token
 
           # Сбор всех C++ файлов из PR
           cpp_files = []
@@ -80,7 +84,7 @@ jobs:
           """
 
           inputs = tokenizer(prompt, return_tensors="pt")
-          outputs = model.generate(**inputs, max_new_tokens=500)
+          outputs = model.generate(**inputs, max_new_tokens=500, pad_token_id=tokenizer.pad_token_id)
           review_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
           # Публикуем комментарий в PR
