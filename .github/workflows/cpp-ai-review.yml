@@ -92,4 +92,3 @@ jobs:
           resp = requests.post(url, json={"body": f"### 🤖 AI Review Feedback\n```\n{review_text}\n```"}, headers=headers)
           print(resp.status_code, resp.text)
           EOF
-вот мой workflow, давай CodeGen-350M-mono
